@@ -8,7 +8,7 @@ public Plugin:myinfo =
 {
 	name = "[L4D & L4D2] Simple Afk Manager",
 	author = "raziEiL [disawar1]",
-	description = "players constantly take slot on your server? Plugin take care of them",
+	description = "Afk manager for cooperative gamemode",
 	version = PLUGIN_VERSION,
 	url = "http://steamcommunity.com/id/raziEiL"
 }
@@ -19,8 +19,11 @@ public OnPluginStart()
 {
 	g_hAutoKick = FindConVar("mp_autokick");
 
+	CreateConVar("sam_version", PLUGIN_VERSION, "Simple Afk Manager plugin version", FCVAR_REPLICATED|FCVAR_NOTIFY);
+
 	g_hKickT	= CreateConVar("sam_kick_time", "120", "Time before idle player will be kicked in seconds");
 	g_hAdmin	= CreateConVar("sam_respect_admins", "k", "Admins have immunity againts afk manager. Flag value or empty \"\" to don't protect admins");
+	AutoExecConfig(true, "SimpleAfkManager");
 
 	HookConVarChange(g_hAutoKick,		OnCvarChange_AutoKick);
 	HookConVarChange(g_hKickT,			OnCvarChange_KickT);

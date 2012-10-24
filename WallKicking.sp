@@ -16,6 +16,8 @@ static bool:bWallKick[MAXPLAYERS+1];
 
 public OnPluginStart()
 {
+	CreateConVar("stop_wallkicking_version", PLUGIN_VERSION, "Stop Wall Kicking plugin version", FCVAR_REPLICATED|FCVAR_NOTIFY);
+
 	HookEvent("ability_use", WK_Event_AbilityUse);
 	HookEvent("player_jump", WK_Event_PlayerJump);
 }
@@ -61,7 +63,7 @@ public Action:WK_t_L4D2BugFix(Handle:timer, any:client)
 
 	PrintToChatAll("WTF! %N what are you doing?", client);
 	SetEntityMoveType(client, MOVETYPE_CUSTOM);
-	ForcePlayerSuicide(client)
+	ForcePlayerSuicide(client);
 }
 
 public Action:WK_t_Unlock(Handle:timer, any:client)
