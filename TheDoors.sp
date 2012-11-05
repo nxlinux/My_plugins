@@ -64,14 +64,13 @@ public Action:DL_t_LockSafeRoom(Handle:timer, any:time)
 
 		GetEntPropVector(iEnt, Prop_Send, "m_vecOrigin", vDoor);
 
-		//new Float:fDis = GetVectorDistance(vSurvivor, vDoor);
-		//LogMessage("door %d, dis %f, suvivor pos %f %f %f", iEnt, fDis, vSurvivor[0], vSurvivor[1], vSurvivor[2]);
-		// I d'like send m_hasUnlockSequence prop
 		if (GetVectorDistance(vSurvivor, vDoor) < 600){
 
-			DispatchKeyValue(iEnt, "speed", "0");
+			//DispatchKeyValue(iEnt, "speed", "0");
+			SetEntProp(iEnt, Prop_Data, "m_hasUnlockSequence", 1);
+			AcceptEntityInput(iEnt, "Lock");
 
-			FormatEx(sOutPut, 128, "OnUser1 !self:SetSpeed:200:%d:-1", time);
+			FormatEx(sOutPut, 128, "OnUser1 !self:Unlock::%d:-1", time);
 			SetVariantString(sOutPut);
 
 			AcceptEntityInput(iEnt, "AddOutput");
