@@ -66,7 +66,6 @@ public Action:DL_t_LockSafeRoom(Handle:timer, any:time)
 
 		if (GetVectorDistance(vSurvivor, vDoor) < 600){
 
-			//DispatchKeyValue(iEnt, "speed", "0");
 			SetEntProp(iEnt, Prop_Data, "m_hasUnlockSequence", 1);
 			AcceptEntityInput(iEnt, "Lock");
 
